@@ -21,6 +21,11 @@ public class LancamentoArquivoModel {
 
     public LancamentoArquivoModel() { }
 
+    public LancamentoArquivoModel(LancamentoModel lancamentoModel, ArquivoModel arquivoModel) {
+        this.lancamentoModel = lancamentoModel;
+        this.arquivoModel = arquivoModel;
+    }
+
     public Long getCodigo() {
         return codigo;
     }

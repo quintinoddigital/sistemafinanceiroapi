@@ -20,8 +20,8 @@ public class LancamentoArquivoController {
     }
 
     @PostMapping
-    public LancamentoArquivoModel saveOne(@RequestBody LancamentoArquivoModel lancamentoPagamentoModel) {
-        return this.lancamentoArquivoService.saveOne(lancamentoPagamentoModel);
+    public LancamentoArquivoModel saveOne(@RequestParam("codigo-lancamento") Long codigoLancamento, @RequestParam("codigo-arquivo") Long codigoArquivo) {
+        return this.lancamentoArquivoService.saveOne(codigoLancamento, codigoArquivo);
     }
 
     @PutMapping("/{codigo}")

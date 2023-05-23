@@ -19,8 +19,6 @@ public class ArquivoService {
     @Autowired
     private ArquivoRepository arquivoRepository;
 
-    // private static final String DIRETORIO_STORAGE = "/Users/desenvolvimento/Desktop/Desenvolvimento/sistemafinanceirostg/";
-
     @Value("${diretorio}")
     private String DIRETORIO_STORAGE;
 
@@ -61,7 +59,7 @@ public class ArquivoService {
                 Files.write(path, byteList);
             }
         } catch (Exception exception) {
-            System.out.println("[ERROR SYSTEM] "+ exception);
+            System.out.println("[API ERROR] "+ exception);
         }
     }
 
