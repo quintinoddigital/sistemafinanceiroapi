@@ -4,6 +4,7 @@ import br.com.quintino.sistemafinanceiroapi.model.ArquivoModel;
 import br.com.quintino.sistemafinanceiroapi.service.ArquivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ public class ArquivoController {
         return this.arquivoService.findAll();
     }
 
-    @PostMapping
-    public ArquivoModel saveOne(@RequestBody ArquivoModel arquivoModel) {
-        return this.arquivoService.saveOne(arquivoModel);
+    @PostMapping("/upload")
+    public ArquivoModel saveOne(@RequestParam("arquivo") MultipartFile multipartFile) {
+        return this.arquivoService.saveOne(multipartFile);
     }
 
     @PutMapping("/{codigo}")

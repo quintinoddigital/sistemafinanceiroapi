@@ -1,5 +1,6 @@
 package br.com.quintino.sistemafinanceiroapi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -19,19 +20,21 @@ public class ArquivoModel {
     @Column(name = "DESCRICAO", length = 80)
     private String descricao;
 
-    @Column(name = "FORMATO", length = 4, nullable = false)
+    @Column(name = "FORMATO", length = 40, nullable = false)
     private String formato;
 
     @Column(name = "CAMINHO", length = 255)
     private String caminho;
 
     @Column(name = "TAMANHO")
-    private Float tamanho;
+    private long tamanho;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     @Column(name = "DATA_CADASTRO", nullable = false)
     private Date dataCadastro;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     @Column(name = "DATA_ATUALIZACAO", nullable = false)
     private Date dataAtualizacao;
@@ -78,11 +81,11 @@ public class ArquivoModel {
         this.caminho = caminho;
     }
 
-    public Float getTamanho() {
+    public long getTamanho() {
         return tamanho;
     }
 
-    public void setTamanho(Float tamanho) {
+    public void setTamanho(long tamanho) {
         this.tamanho = tamanho;
     }
 
