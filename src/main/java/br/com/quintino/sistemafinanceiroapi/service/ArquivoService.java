@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -57,10 +58,20 @@ public class ArquivoService {
                 byte[] byteList = multipartFile.getBytes();
                 Path path = Paths.get(DIRETORIO_STORAGE, multipartFile.getOriginalFilename());
                 Files.write(path, byteList);
+                this.criarDiretorio(multipartFile.getOriginalFilename());
             }
         } catch (Exception exception) {
             System.out.println("[API ERROR] "+ exception);
         }
+    }
+
+    // TODO -- Criar diretorio e salvar o arquivo com identificador (Dia, Mes, Ano)
+    private boolean criarDiretorio(String nome) {
+        File file = new File(DIRETORIO_STORAGE + "/" + "NEW FOLDER");
+            if (file.mkdir()) {
+                return true;
+            }
+        return false;
     }
 
 }
