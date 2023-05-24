@@ -76,11 +76,10 @@ public class ArquivoService {
         }
     }
 
-    // TODO -- Criar diretorio e salvar o arquivo com identificador (Dia, Mes, Ano)
     private String criarDiretorio(String nomeDiretorio, String nomeArquivo) {
         File file = new File(DIRETORIO_STORAGE + "/" + nomeDiretorio);
             if (file.mkdir()) {
-                System.out.println("[SISTEMAFINANCEIROAPI] Diretorio Criado com Sucesso!");
+                System.out.println("[SISTEMAFINANCEIROAPI] Diretorio '" + nomeDiretorio + "' criado com Sucesso!");
             }
         return file.getAbsolutePath();
     }
