@@ -1,16 +1,20 @@
 package br.com.quintino.sistemafinanceiroapi.service;
 
 import br.com.quintino.sistemafinanceiroapi.model.ArquivoModel;
+import br.com.quintino.sistemafinanceiroapi.model.PessoaModel;
 import br.com.quintino.sistemafinanceiroapi.repository.ArquivoRepository;
+import br.com.quintino.sistemafinanceiroapi.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +24,9 @@ public class ArquivoService {
     @Autowired
     private ArquivoRepository arquivoRepository;
 
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
     @Value("${diretorio}")
     private String DIRETORIO_STORAGE;
 
@@ -27,9 +34,14 @@ public class ArquivoService {
         return this.arquivoRepository.findAll();
     }
 
-    public ArquivoModel saveOne(MultipartFile multipartFile) {
-        this.gravarArquivoDisco(multipartFile);
-        return this.arquivoRepository.saveAndFlush(this.configurarArquivo(multipartFile));
+    public List<ArquivoModel> saveOne(Long codigoPessoaResponsavel, List<MultipartFile> multipartFileList) {
+        List<ArquivoModel> arquivoModelList = new ArrayList<>();
+        PessoaModel pessoaModel = this.pessoaRepository.findById(codigoPessoaResponsavel).get();
+        for (MultipartFile multipartFile : multipartFileList) {
+            this.gravarArquivoDisco(pessoaModel.getNome(), multipartFile);
+            arquivoModelList.add(this.arquivoRepository.saveAndFlush(this.configurarArquivo(multipartFile)));
+        }
+        return arquivoModelList;
     }
 
     public ArquivoModel updateOne(Long codigo, ArquivoModel arquivoModel) {
@@ -52,26 +64,25 @@ public class ArquivoService {
         return arquivoModel;
     }
 
-    private void gravarArquivoDisco(MultipartFile multipartFile) {
+    private void gravarArquivoDisco(String nomeDiretorio, MultipartFile multipartFile) {
         try {
             if (!multipartFile.isEmpty()) {
-                byte[] byteList = multipartFile.getBytes();
-                Path path = Paths.get(DIRETORIO_STORAGE, multipartFile.getOriginalFilename());
-                Files.write(path, byteList);
-                this.criarDiretorio(multipartFile.getOriginalFilename());
+                String caminho = this.criarDiretorio(nomeDiretorio, multipartFile.getOriginalFilename());
+                Path path = Paths.get(caminho, multipartFile.getOriginalFilename());
+                Files.write(path, multipartFile.getBytes());
             }
         } catch (Exception exception) {
-            System.out.println("[API ERROR] "+ exception);
+            System.out.println("[ERROR] "+ exception);
         }
     }
 
     // TODO -- Criar diretorio e salvar o arquivo com identificador (Dia, Mes, Ano)
-    private boolean criarDiretorio(String nome) {
-        File file = new File(DIRETORIO_STORAGE + "/" + "NEW FOLDER");
+    private String criarDiretorio(String nomeDiretorio, String nomeArquivo) {
+        File file = new File(DIRETORIO_STORAGE + "/" + nomeDiretorio);
             if (file.mkdir()) {
-                return true;
+                System.out.println("[SISTEMAFINANCEIROAPI] Diretorio Criado com Sucesso!");
             }
-        return false;
+        return file.getAbsolutePath();
     }
 
 }

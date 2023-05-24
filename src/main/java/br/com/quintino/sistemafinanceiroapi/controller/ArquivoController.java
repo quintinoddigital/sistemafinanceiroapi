@@ -21,8 +21,8 @@ public class ArquivoController {
     }
 
     @PostMapping("/upload")
-    public ArquivoModel saveOne(@RequestParam("arquivo") MultipartFile multipartFile) {
-        return this.arquivoService.saveOne(multipartFile);
+    public List<ArquivoModel> saveOne(@RequestParam("codigo-pessoa-responsavel") Long codigoPessoaResponsavel, @RequestParam("arquivo") List<MultipartFile> multipartFileList) {
+        return this.arquivoService.saveOne(codigoPessoaResponsavel, multipartFileList);
     }
 
     @PutMapping("/{codigo}")
