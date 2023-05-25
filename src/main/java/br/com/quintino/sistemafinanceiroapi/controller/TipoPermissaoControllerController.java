@@ -1,6 +1,6 @@
 package br.com.quintino.sistemafinanceiroapi.controller;
 
-import br.com.quintino.sistemafinanceiroapi.model.TipoPermissaoPessoaModel;
+import br.com.quintino.sistemafinanceiroapi.model.PapelModel;
 import br.com.quintino.sistemafinanceiroapi.service.TipoPermissaoPessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class TipoPermissaoControllerController {
     private TipoPermissaoPessoaService tipoPermissaoPessoaService;
 
     @GetMapping
-    public List<TipoPermissaoPessoaModel> findAll() {
+    public List<PapelModel> findAll() {
         return this.tipoPermissaoPessoaService.findAll();
     }
 

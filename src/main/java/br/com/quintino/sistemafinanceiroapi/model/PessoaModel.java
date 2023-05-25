@@ -18,9 +18,13 @@ public class PessoaModel {
     @JoinColumn(name = "ID_TIPO_PESSOA", nullable = false)
     private TipoPessoaModel tipoPessoaModel;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "pessoaModel", orphanRemoval = true, cascade = { CascadeType.PERSIST, CascadeType.MERGE} )
-    private List<PermissaoPessoaModel> permissaoPessoaModelList;
+//    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "TB_PAPEL_PESSOA",
+            joinColumns = @JoinColumn(name = "ID_PAPEL"),
+            inverseJoinColumns = @JoinColumn(name = "ID_PESSOA")
+    )
+    private List<PapelModel> papelModelList;
 
     @Column(name = "NOME", nullable = false)
     private String nome;
@@ -51,15 +55,19 @@ public class PessoaModel {
         this.nome = nome;
     }
 
-    public List<PermissaoPessoaModel> getPermissaoPessoaModelList() {
-        return permissaoPessoaModelList;
+    public List<PapelModel> getPapelModelList() {
+        return papelModelList;
     }
 
-    public void setPermissaoPessoaModelList(List<PermissaoPessoaModel> permissaoPessoaModelList) {
-        for (PermissaoPessoaModel permissaoPessoaModel : permissaoPessoaModelList) {
-            permissaoPessoaModel.setPessoaModel(this);
-        }
-        this.permissaoPessoaModelList = permissaoPessoaModelList;
+    public void setPapelModelList(List<PapelModel> papelModelList) {
+        this.papelModelList = papelModelList;
     }
+
+//    public void setPermissaoPessoaModelList(List<PessoaPapelModel> permissaoPessoaModelList) {
+//        for (PessoaPapelModel permissaoPessoaModel : permissaoPessoaModelList) {
+//            permissaoPessoaModel.setPessoaModel(this);
+//        }
+//        this.permissaoPessoaModelList = permissaoPessoaModelList;
+//    }
 
 }
