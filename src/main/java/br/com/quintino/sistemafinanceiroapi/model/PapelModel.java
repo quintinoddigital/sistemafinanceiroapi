@@ -21,6 +21,10 @@ public class PapelModel {
 
     public PapelModel() { }
 
+    public PapelModel(String nome) {
+        this.nome = nome;
+    }
+
     public Long getCodigo() {
         return codigo;
     }
