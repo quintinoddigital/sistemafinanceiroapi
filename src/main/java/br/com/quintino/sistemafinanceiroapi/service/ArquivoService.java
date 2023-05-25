@@ -53,6 +53,7 @@ public class ArquivoService {
         this.arquivoRepository.delete(this.arquivoRepository.findById(codigo).get());
     }
 
+    // TODO -- Criar classe de service especificamente para o gerenciamento de arquivos
     private ArquivoModel configurarArquivo(MultipartFile multipartFile) {
         ArquivoModel arquivoModel = new ArquivoModel();
             arquivoModel.setNome(multipartFile.getName());
