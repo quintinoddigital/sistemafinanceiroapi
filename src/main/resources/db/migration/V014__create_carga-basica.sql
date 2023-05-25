@@ -1,9 +1,7 @@
 INSERT INTO TB_TIPO_PESSOA (DESCRICAO) values ('Pessoa Física');
 INSERT INTO TB_TIPO_PESSOA (DESCRICAO) values ('Pessoa Jurídica');
 
-INSERT INTO TB_PESSOA (ID_TIPO_PESSOA, NOME) values (1, 'José Quintino');
-INSERT INTO TB_PESSOA (ID_TIPO_PESSOA, NOME) values (2, 'Banco do Brasil');
-INSERT INTO TB_PESSOA (ID_TIPO_PESSOA, NOME) values (2, 'Amazon Brasil');
+INSERT INTO TB_PESSOA (ID_TIPO_PESSOA, NOME) values (1, 'Usuário de Desenvolvimento');
 
 INSERT INTO TB_TIPO_LANCAMENTO (IDENTIFICADOR, DESCRICAO) VALUES
 	('RECEITA_FIXA', 'Receita Fixa'),

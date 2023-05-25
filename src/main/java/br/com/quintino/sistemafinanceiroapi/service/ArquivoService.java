@@ -54,6 +54,7 @@ public class ArquivoService {
     }
 
     // TODO -- Criar classe de service especificamente para o gerenciamento de arquivos
+    // TODO -- Ao Remover uma pessoa do sistema deve-se excluir seus arquivos
     private ArquivoModel configurarArquivo(MultipartFile multipartFile) {
         ArquivoModel arquivoModel = new ArquivoModel();
             arquivoModel.setNome(multipartFile.getName());
