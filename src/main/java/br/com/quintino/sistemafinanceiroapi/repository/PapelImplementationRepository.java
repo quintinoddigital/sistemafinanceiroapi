@@ -14,7 +14,7 @@ public class PapelImplementationRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    // TODO -- REFATORAR CODIGO
+    // TODO -- REFATORAR CODIGO- CONVERTER PARA JPQL
     public List<PapelPessoaModel> recuperarPapelPessoa(Long codigoPessoa) {
         StringBuilder sql = new StringBuilder("SELECT PAPEL, PESSOA ")
             .append("FROM TB_PAPEL_PESSOA PAPEL_PESSOA ")
