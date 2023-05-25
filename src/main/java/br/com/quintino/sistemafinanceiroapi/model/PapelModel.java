@@ -1,5 +1,6 @@
 package br.com.quintino.sistemafinanceiroapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class PapelModel {
     @Column(name = "NOME", length = 45, nullable = false)
     private String nome;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "papelModelList", fetch = FetchType.EAGER)
     private List<PessoaModel> pessoaModelList;
 

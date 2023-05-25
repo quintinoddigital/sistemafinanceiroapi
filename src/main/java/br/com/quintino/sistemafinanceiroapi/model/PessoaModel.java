@@ -18,7 +18,7 @@ public class PessoaModel {
     @JoinColumn(name = "ID_TIPO_PESSOA", nullable = false)
     private TipoPessoaModel tipoPessoaModel;
 
-//    @JsonIgnore
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "TB_PAPEL_PESSOA",
             joinColumns = @JoinColumn(name = "ID_PAPEL"),
