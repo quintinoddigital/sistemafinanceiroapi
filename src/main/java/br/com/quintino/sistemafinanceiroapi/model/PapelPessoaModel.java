@@ -3,8 +3,8 @@ package br.com.quintino.sistemafinanceiroapi.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "TB_PESSOA_PAPEL")
-public class PessoaPapelModel {
+@Table(name = "TB_PAPEL_PESSOA")
+public class PapelPessoaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class PessoaPapelModel {
     @JoinColumn(name = "ID_PESSOA")
     private PessoaModel pessoaModel;
 
-    public PessoaPapelModel() { }
+    public PapelPessoaModel() { }
 
     public Long getCodigo() {
         return codigo;
