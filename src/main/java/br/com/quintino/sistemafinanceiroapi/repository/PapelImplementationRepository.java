@@ -1,6 +1,6 @@
 package br.com.quintino.sistemafinanceiroapi.repository;
 
-import br.com.quintino.sistemafinanceiroapi.dto.PapelPessoaDTO;
+import br.com.quintino.sistemafinanceiroapi.model.PapelPessoaModel;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
@@ -15,13 +15,13 @@ public class PapelImplementationRepository {
     private EntityManager entityManager;
 
     // TODO -- REFATORAR CODIGO
-    public List<String> recuperarPapelPessoa(Long codigoPessoa) {
-        StringBuilder sql = new StringBuilder("SELECT PESSOA.NOME, PAPEL.NOME ")
+    public List<PapelPessoaModel> recuperarPapelPessoa(Long codigoPessoa) {
+        StringBuilder sql = new StringBuilder("SELECT PAPEL, PESSOA ")
             .append("FROM TB_PAPEL_PESSOA PAPEL_PESSOA ")
             .append("JOIN TB_PESSOA PESSOA ON PESSOA.CODIGO = PAPEL_PESSOA.ID_PESSOA ")
             .append("JOIN TB_PAPEL PAPEL ON PAPEL.CODIGO = PAPEL_PESSOA.ID_PAPEL ")
             .append("WHERE PESSOA.CODIGO = :codigoPessoaParameter ");
-        Query query = this.entityManager.createQuery(sql.toString(), String.class);
+        Query query = this.entityManager.createQuery(sql.toString(), PapelPessoaModel.class);
             query.setParameter("codigoPessoaParameter", codigoPessoa);
         return query.getResultList();
     }

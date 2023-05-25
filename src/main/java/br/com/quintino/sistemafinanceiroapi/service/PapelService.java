@@ -1,7 +1,7 @@
 package br.com.quintino.sistemafinanceiroapi.service;
 
-import br.com.quintino.sistemafinanceiroapi.dto.PapelPessoaDTO;
 import br.com.quintino.sistemafinanceiroapi.model.PapelModel;
+import br.com.quintino.sistemafinanceiroapi.model.PapelPessoaModel;
 import br.com.quintino.sistemafinanceiroapi.repository.PapelImplementationRepository;
 import br.com.quintino.sistemafinanceiroapi.repository.PapelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class PapelService {
         return this.papelRepository.findAll();
     }
 
-    public List<PapelPessoaDTO> recuperarPapelPessoa(Long codigoPessoa) {
+    public List<PapelPessoaModel> recuperarPapelPessoa(Long codigoPessoa) {
         System.out.println(this.papelImplementationRepository.recuperarPapelPessoa(codigoPessoa));
         return null;
     }
