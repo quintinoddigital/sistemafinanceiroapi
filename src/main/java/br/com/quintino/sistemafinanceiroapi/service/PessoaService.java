@@ -17,6 +17,7 @@ public class PessoaService {
         return this.pessoaRepository.findAll();
     }
 
+    // TODO -- Verificar de a pessoa já esta cadastrada no sistema
     public PessoaModel saveOne(PessoaModel pessoaModel) {
         return this.pessoaRepository.saveAndFlush(pessoaModel);
     }
@@ -31,7 +32,5 @@ public class PessoaService {
     public void deleteOne(Long codigo) {
         this.pessoaRepository.delete(this.pessoaRepository.findById(codigo).get());
     }
-
-
 
 }
