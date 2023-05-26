@@ -2,13 +2,14 @@ package br.com.quintino.sistemafinanceiroapi.dto;
 
 import br.com.quintino.sistemafinanceiroapi.model.PapelModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PapelPessoaDTO {
 
     private String nomePessoa;
 
-    private String nomePapel;
+    private List<PapelModel> papelModelList = new ArrayList<>();
 
     public PapelPessoaDTO() { }
 
@@ -20,12 +21,12 @@ public class PapelPessoaDTO {
         this.nomePessoa = nomePessoa;
     }
 
-    public String getNomePapel() {
-        return nomePapel;
+    public List<PapelModel> getPapelModelList() {
+        return papelModelList;
     }
 
-    public void setNomePapel(String nomePapel) {
-        this.nomePapel = nomePapel;
+    public void setPapelModelList(List<PapelModel> papelModelList) {
+        this.papelModelList = papelModelList;
     }
 
 }

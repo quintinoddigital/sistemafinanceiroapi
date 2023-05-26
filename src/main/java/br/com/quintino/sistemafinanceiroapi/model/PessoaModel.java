@@ -18,9 +18,11 @@ public class PessoaModel {
     @JoinColumn(name = "ID_TIPO_PESSOA", nullable = false)
     private TipoPessoaModel tipoPessoaModel;
 
-    @OneToMany(mappedBy = "pessoaModel", orphanRemoval = true, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "pessoaModel", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PapelPessoaModel> papelPessoaModelList;
 
+    @JsonIgnore
     @Column(name = "NOME", nullable = false)
     private String nome;
 

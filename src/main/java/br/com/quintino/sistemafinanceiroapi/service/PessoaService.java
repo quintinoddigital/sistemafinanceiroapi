@@ -33,6 +33,4 @@ public class PessoaService {
         this.pessoaRepository.delete(this.pessoaRepository.findById(codigo).get());
     }
 
-
-
 }
