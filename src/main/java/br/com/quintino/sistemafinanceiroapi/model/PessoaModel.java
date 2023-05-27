@@ -22,7 +22,6 @@ public class PessoaModel {
     @OneToMany(mappedBy = "pessoaModel", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PapelPessoaModel> papelPessoaModelList;
 
-    @JsonIgnore
     @Column(name = "NOME", nullable = false)
     private String nome;
 
