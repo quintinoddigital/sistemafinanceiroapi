@@ -3,6 +3,7 @@ package br.com.quintino.sistemafinanceiroapi.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "TB_DOCUMENTO")
@@ -21,6 +22,9 @@ public class DocumentoModel {
     @JoinColumn(name = "ID_PESSOA")
     private PessoaModel pessoaModel;
 
+    @Transient
+    private List<ArquivoModel> arquivoModelList;
+
     @Column(name = "NUMERO", nullable = false)
     private String numero;
 
@@ -35,7 +39,9 @@ public class DocumentoModel {
     @Column(name = "IS_ATIVO", nullable = false)
     private Boolean isAtivo;
 
-    public DocumentoModel() { }
+    public DocumentoModel() {
+        this.isAtivo = true;
+    }
 
     public Long getCodigo() {
         return codigo;
@@ -91,6 +97,14 @@ public class DocumentoModel {
 
     public void setAtivo(Boolean ativo) {
         isAtivo = ativo;
+    }
+
+    public List<ArquivoModel> getArquivoModelList() {
+        return arquivoModelList;
+    }
+
+    public void setArquivoModelList(List<ArquivoModel> arquivoModelList) {
+        this.arquivoModelList = arquivoModelList;
     }
 
 }
