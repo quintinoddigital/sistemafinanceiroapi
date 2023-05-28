@@ -19,6 +19,7 @@ public class DocumentoService {
 
     // TODO -- Verificar se o documento já esta cadastrada no sistema
     public DocumentoModel saveOne(DocumentoModel documentoModel) {
+        documentoModel.setAtivo(true);
         return this.documentoRepository.saveAndFlush(documentoModel);
     }
 

@@ -17,6 +17,10 @@ public class DocumentoModel {
     @JoinColumn(name = "ID_TIPO_DOCUMENTO")
     private TipoDocumentoModel tipoDocumentoModel;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_PESSOA")
+    private PessoaModel pessoaModel;
+
     @Column(name = "NUMERO", nullable = false)
     private String numero;
 
@@ -47,6 +51,14 @@ public class DocumentoModel {
 
     public void setTipoDocumentoModel(TipoDocumentoModel tipoDocumentoModel) {
         this.tipoDocumentoModel = tipoDocumentoModel;
+    }
+
+    public PessoaModel getPessoaModel() {
+        return pessoaModel;
+    }
+
+    public void setPessoaModel(PessoaModel pessoaModel) {
+        this.pessoaModel = pessoaModel;
     }
 
     public String getNumero() {
