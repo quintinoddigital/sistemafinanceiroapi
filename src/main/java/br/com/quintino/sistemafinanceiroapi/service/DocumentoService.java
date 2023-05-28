@@ -4,18 +4,21 @@ import br.com.quintino.sistemafinanceiroapi.model.ArquivoDocumentoModel;
 import br.com.quintino.sistemafinanceiroapi.model.ArquivoModel;
 import br.com.quintino.sistemafinanceiroapi.model.DocumentoModel;
 import br.com.quintino.sistemafinanceiroapi.repository.ArquivoDocumentoRepository;
+import br.com.quintino.sistemafinanceiroapi.repository.DocumentoImplementationRepository;
 import br.com.quintino.sistemafinanceiroapi.repository.DocumentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import br.com.quintino.sistemafinanceiroapi.repository.ArquivoRepository;
 
 @Service
 public class DocumentoService {
 
     @Autowired
     private DocumentoRepository documentoRepository;
+
+    private DocumentoImplementationRepository documentoImplementationRepository;
+
 
     @Autowired
     private ArquivoDocumentoRepository arquivoDocumentoRepository;
@@ -44,6 +47,10 @@ public class DocumentoService {
 
     public void deleteOne(Long codigo) {
         this.documentoRepository.delete(this.documentoRepository.findById(codigo).get());
+    }
+
+    public List<DocumentoModel> recuperarDocumentoPessoa(Long codigoPessoa) {
+        return this.documentoImplementationRepository.recuperarDocumentoPessoa(codigoPessoa);
     }
 
 }
