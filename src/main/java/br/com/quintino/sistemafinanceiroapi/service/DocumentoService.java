@@ -17,6 +17,7 @@ public class DocumentoService {
     @Autowired
     private DocumentoRepository documentoRepository;
 
+    @Autowired
     private DocumentoImplementationRepository documentoImplementationRepository;
 
 

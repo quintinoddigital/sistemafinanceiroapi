@@ -34,8 +34,8 @@ public class DocumentoController {
         this.documentoService.deleteOne(codigo);
     }
 
-    @GetMapping("/pessoa/{codigo}")
-    public List<DocumentoModel> recuperarDocumentoPessoa(@PathVariable Long codigoPessoa) {
+    @GetMapping("/pessoa/{codigoPessoa}")
+    public List<DocumentoModel> recuperarDocumentoPessoa(@PathVariable("codigoPessoa") Long codigoPessoa) {
         return this.documentoService.recuperarDocumentoPessoa(codigoPessoa);
     }
 
