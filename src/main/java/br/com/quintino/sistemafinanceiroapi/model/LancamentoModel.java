@@ -2,6 +2,8 @@ package br.com.quintino.sistemafinanceiroapi.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "TB_LANCAMENTO")
 public class LancamentoModel {
@@ -24,9 +26,15 @@ public class LancamentoModel {
     private PessoaModel pessoaResponsavelLancamento;
 
     @Column(name = "IDENTIFICADOR", nullable = false)
-    private String identificacao;
+    private String identificador;
 
-    public LancamentoModel() { }
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DATA", nullable = false)
+    private Date data;
+
+    public LancamentoModel() {
+        this.data = new Date();
+    }
 
     public Long getCodigo() {
         return codigo;
@@ -36,12 +44,12 @@ public class LancamentoModel {
         this.codigo = codigo;
     }
 
-    public String getIdentificacao() {
-        return identificacao;
+    public String getIdentificador() {
+        return identificador;
     }
 
-    public void setIdentificacao(String identificacao) {
-        this.identificacao = identificacao;
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 
     public TipoLancamentoModel getTipoLancamentoModel() {
@@ -66,6 +74,14 @@ public class LancamentoModel {
 
     public void setPessoaResponsavelLancamento(PessoaModel pessoaResponsavelLancamento) {
         this.pessoaResponsavelLancamento = pessoaResponsavelLancamento;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 
 }

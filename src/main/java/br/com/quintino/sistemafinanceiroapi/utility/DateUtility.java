@@ -3,7 +3,7 @@ package br.com.quintino.sistemafinanceiroapi.utility;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DataUtility {
+public class DateUtility {
 
     public static final String FORMMAT_DDMMAAAAHHMMSS = "ddMMYYYYHHmmss";
 
