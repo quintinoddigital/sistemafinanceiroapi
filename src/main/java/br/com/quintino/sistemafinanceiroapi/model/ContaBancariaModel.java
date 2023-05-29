@@ -1,5 +1,6 @@
 package br.com.quintino.sistemafinanceiroapi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -24,10 +25,12 @@ public class ContaBancariaModel {
     @Column(name = "NUMERO", nullable = false)
     private String numero;
 
+    @JsonFormat(pattern = "dd/MM/YYYY")
     @Temporal(TemporalType.DATE)
     @Column(name = "DATA_ABERTURA", nullable = false)
     private Date dataAbertura;
 
+    @JsonFormat(pattern = "dd/MM/YYYY")
     @Temporal(TemporalType.DATE)
     @Column(name = "DATA_FECHAMENTO")
     private Date dataFechamento;

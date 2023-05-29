@@ -1,5 +1,6 @@
 package br.com.quintino.sistemafinanceiroapi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -21,6 +22,7 @@ public class PagamentoModel {
     @JoinColumn(name = "ID_FORMA_PAGAMENTO", nullable = false)
     private FormaPagamentoModel formaPagamentoModel;
 
+    @JsonFormat(pattern = "dd/mm/YYYY")
     @Column(name = "DATA_PAGAMENTO", nullable = false)
     private Date dataPagamento;
 
