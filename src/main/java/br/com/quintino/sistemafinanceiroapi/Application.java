@@ -1,5 +1,6 @@
 package br.com.quintino.sistemafinanceiroapi;
 
+import br.com.quintino.sistemafinanceiroapi.utility.DataUtility;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,7 +24,7 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("A API do Sistema Financeiro está em Execução (Versão 1.0.1)");
+		System.out.println("A API do Sistema Financeiro está em Execução (Versão 1.0.1) " + "[SISTEMAFINANCEIRO" + DataUtility.gerarNumeroDemanda() + "]");
 	}
 
 }
