@@ -48,4 +48,9 @@ public class PessoaController {
 		return this.pessoaService.recuperarPessoaNome(nome);
 	}
 	
+	@GetMapping("/findone/{codigoPessoa}")
+	public PessoaResponseDTO findOne(@PathVariable("codigoPessoa") Long codigoPessoa) {
+		return this.pessoaService.findOne(codigoPessoa);
+	}
+	
 }

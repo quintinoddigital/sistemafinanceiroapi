@@ -57,5 +57,11 @@ public class PessoaService {
 	public List<PessoaResponseDTO> recuperarPessoaNome(String nome) {
 		return this.pessoaImplementarionRepository.recuperarPessoaNome(nome);
 	}
+	
+	public PessoaResponseDTO findOne(Long codigoPessoa) {
+		List<PessoaModel> pessoaModelList = this.pessoaImplementarionRepository.findOne(codigoPessoa);
+		PessoaModel pessoaModel = pessoaModelList.get(0);
+		return new PessoaResponseDTO(pessoaModel.getCodigo(), pessoaModel.getNome(), pessoaModel.getTipoPessoaModel().getDescricao());
+	}
 
 }
