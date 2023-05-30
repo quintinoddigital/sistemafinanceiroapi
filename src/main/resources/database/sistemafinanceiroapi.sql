@@ -1,5 +1,4 @@
--- sistema de lancamento financeiro
-
+drop table if exists flyway_schema_history cascade;
 drop table if exists tb_tipo_pessoa cascade;
 drop table if exists tb_pessoa cascade;
 drop table if exists tb_conta_bancaria cascade;
@@ -14,6 +13,9 @@ drop table if exists tb_lancamento cascade;
 drop table if exists tb_parcelamento cascade;
 drop table if exists tb_lancamento_notificacao cascade;
 drop table if exists tb_categoria_lancamento cascade;
+drop table if exists tb_usuario cascade;
+drop table if exists tb_papel cascade;
+drop table if exists tb_usuario_papel cascade;
 
 create table if not exists tb_tipo_pessoa (
 	codigo serial not null,
@@ -158,14 +160,38 @@ create table if not exists tb_parcelamento (
 	constraint fk_lancamento foreign key (id_lancamento) references tb_pessoa (codigo)
 );
 
+create table if not exists tb_usuario (
+	codigo serial not null,
+	id_pessoa integer not null,
+	identificador varchar(100) not null unique,
+	chave varchar(100) not null,
+	imagem bytea not null,
+	is_ativo boolean not null,
+	constraint pk_usuario primary key (codigo),
+	constraint fk_pessoa foreign key (id_pessoa) references tb_pessoa (codigo)
+);
+
+create table if not exists tb_papel (
+	codigo serial not null,
+	nome varchar(100) not null unique,
+	constraint pk_papel primary key (codigo)
+);
+
+create table if not exists tb_usuario_papel (
+	codigo serial not null,
+	id_usuario integer not null,
+	id_papel integer not null,
+	constraint pk_usuario_papel primary key (codigo),
+	constraint fk_usuario foreign key (id_usuario) references tb_usuario (codigo),
+	constraint fk_papel foreign key (id_papel) references tb_papel (codigo)
+);
+
 select * from tb_tipo_pessoa;
 insert into tb_tipo_pessoa (descricao) values ('Pessoa Física');
 insert into tb_tipo_pessoa (descricao) values ('Pessoa Jurídica');
 
 select * from tb_pessoa;
-insert into tb_pessoa (id_tipo_pessoa, nome) values (1, 'José Quintinno');
-insert into tb_pessoa (id_tipo_pessoa, nome) values (2, 'Banco do Brasil');
-insert into tb_pessoa (id_tipo_pessoa, nome) values (2, 'Supermercado Atacadão Dia a Dia (Vicente Pires)');
+insert into tb_pessoa (id_tipo_pessoa, nome) values (1, 'Isdoe Zafoathic Suanpavu Durbsuhash');
 
 select * from tb_periodo;
 insert into tb_periodo (descricao) values ('Casual');
