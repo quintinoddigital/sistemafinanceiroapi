@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.quintinodigital.sistemafinanceiroapi.dto.PessoaResponseDTO;
+import br.com.quintinodigital.sistemafinanceiroapi.exception.ObjectNotFoundException;
 import br.com.quintinodigital.sistemafinanceiroapi.model.PessoaModel;
 import br.com.quintinodigital.sistemafinanceiroapi.model.TipoPessoaModel;
 import br.com.quintinodigital.sistemafinanceiroapi.repository.PessoaImplementarionRepository;
 import br.com.quintinodigital.sistemafinanceiroapi.repository.PessoaRepository;
 import br.com.quintinodigital.sistemafinanceiroapi.repository.TipoPessoaRepository;
+import br.com.quintinodigital.sistemafinanceiroapi.utility.MensagemUtility;
 
 @Service
 public class PessoaService {
@@ -59,8 +61,10 @@ public class PessoaService {
 	}
 	
 	public PessoaResponseDTO findOne(Long codigoPessoa) {
-		List<PessoaModel> pessoaModelList = this.pessoaImplementarionRepository.findOne(codigoPessoa);
-		PessoaModel pessoaModel = pessoaModelList.get(0);
+		PessoaModel pessoaModel = this.pessoaRepository.findByCodigo(codigoPessoa);
+		if (pessoaModel == null) {
+			throw new ObjectNotFoundException(MensagemUtility.MENSAGEM_PESSOA_NAO_ENCONTRADA);
+		}
 		return new PessoaResponseDTO(pessoaModel.getCodigo(), pessoaModel.getNome(), pessoaModel.getTipoPessoaModel().getDescricao());
 	}
 

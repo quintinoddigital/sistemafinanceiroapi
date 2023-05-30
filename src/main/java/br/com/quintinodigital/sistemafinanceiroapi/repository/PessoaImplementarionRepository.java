@@ -34,14 +34,13 @@ public class PessoaImplementarionRepository {
 		return pessoaResponseDTOList;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<PessoaModel> findOne(Long codigoPessoa) {
+	public PessoaModel findOne(Long codigoPessoa) {
 		StringBuilder sql = new StringBuilder("SELECT pessoaModel ")
 				.append("FROM PessoaModel pessoaModel ")
 				.append("WHERE pessoaModel.codigo = :codigoPessoaParameter ");
-		Query query = this.entityManager.createQuery(sql.toString(), PessoaModel.class);
+		Query query = this.entityManager.createQuery(sql.toString());
 			query.setParameter("codigoPessoaParameter", codigoPessoa);
-		return query.getResultList();
+		return (PessoaModel) query.getSingleResult();
 	}
 
 }

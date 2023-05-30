@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.quintinodigital.sistemafinanceiroapi.utility.DataUtility;
+import br.com.quintinodigital.sistemafinanceiroapi.utility.DateUtility;
 
 @SpringBootApplication
 @RestController
@@ -25,7 +25,7 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("A API do Sistema Financeiro está em Execução (Versão 1.0.1) " + "[SISTEMAFINANCEIRO" + DataUtility.gerarNumeroDemanda() + "]");
+		System.out.println("A API do Sistema Financeiro está em Execução (Versão 1.0.1) " + "[SISTEMAFINANCEIRO" + DateUtility.gerarNumeroDemanda() + "]");
 	}
 
 }

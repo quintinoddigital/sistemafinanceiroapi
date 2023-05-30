@@ -7,5 +7,5 @@ import br.com.quintinodigital.sistemafinanceiroapi.model.PessoaModel;
 
 @Repository
 public interface PessoaRepository extends JpaRepository<PessoaModel, Long> { 
-	public PessoaModel findPessoaModelByNome(String nome);
+	public PessoaModel findByCodigo(Long codigo);
 }
