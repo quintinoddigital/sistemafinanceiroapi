@@ -19,7 +19,7 @@ public class AutenticadorController {
 	private AutenticadorService autenticadorService;
 	
 	@PostMapping("/registrar")
-	public ResponseEntity<AutenticadorResponseDTO> registrarUsuario(@RequestBody UsuarioRequestDTO usuarioRequestDTO) {
+	public ResponseEntity<?> registrarUsuario(@RequestBody UsuarioRequestDTO usuarioRequestDTO) {
 		return ResponseEntity.ok(autenticadorService.registrarUsuario(usuarioRequestDTO));
 	}
 	

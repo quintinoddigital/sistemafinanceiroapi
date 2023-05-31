@@ -5,6 +5,7 @@ create table if not exists tb_usuario (
 	identificador varchar(100) not null unique,
 	chave varchar(100) not null,
 	imagem bytea null,
+	token varchar(255) not null unique,
 	is_ativo boolean not null,
 	constraint pk_usuario primary key (codigo)
 );

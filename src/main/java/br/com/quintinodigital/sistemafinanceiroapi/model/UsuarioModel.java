@@ -48,6 +48,9 @@ public class UsuarioModel implements UserDetails {
 	@Column(name = "ID_PAPEL", nullable = false)
 	private PapelEnumeration papelEnumeration;
 	
+	@Column(name = "TOKEN", nullable = false)
+	private String token;
+	
 	public UsuarioModel() { }
 	
 	@Override
@@ -139,6 +142,14 @@ public class UsuarioModel implements UserDetails {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

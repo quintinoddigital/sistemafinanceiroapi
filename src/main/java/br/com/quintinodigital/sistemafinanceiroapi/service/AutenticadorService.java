@@ -39,6 +39,7 @@ public class AutenticadorService implements Serializable {
 			usuarioModel.setPapelEnumeration(PapelEnumeration.SISTEMA);
 			usuarioModel.setIsAtivo(true);
 			usuarioModel.setChave(this.passwordEncoder.encode(usuarioRequestDTO.getChave()));
+			usuarioModel.setToken(jwtServiceConfiguration.generateTOKEN(usuarioModel));
 			this.usuarioRepository.save(usuarioModel);
 		return new AutenticadorResponseDTO(jwtServiceConfiguration.generateTOKEN(usuarioModel));
 	}
@@ -46,7 +47,9 @@ public class AutenticadorService implements Serializable {
 	public AutenticadorResponseDTO autenticarUsuario(UsuarioRequestDTO usuarioRequestDTO) {
 		this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(usuarioRequestDTO.getIdentificador(), usuarioRequestDTO.getChave()));
 		UsuarioModel usuarioModel = this.usuarioRepository.findByIdentificador(usuarioRequestDTO.getIdentificador()).orElseThrow();
-		return new AutenticadorResponseDTO(jwtServiceConfiguration.generateTOKEN(usuarioModel));
+		String token = jwtServiceConfiguration.generateTOKEN(usuarioModel);
+			usuarioModel.setToken(token);
+		return new AutenticadorResponseDTO(token);
 	}
 
 }
